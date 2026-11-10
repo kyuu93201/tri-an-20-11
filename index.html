@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri Ân Thầy Cô - Ngày Nhà Giáo Việt Nam 20/11</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amberGold: '#E6A15C',
+                        warmOrange: '#D97736',
+                        deepAmber: '#8C4318',
+                        softCream: '#FDFBF7',
+                        cardBg: '#FFFDF9',
+                    },
+                    fontFamily: {
+                        handwriting: ['"Dancing Script"', 'cursive'],
+                        serifHeader: ['"Playfair Display"', 'serif'],
+                        sansBody: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .card-container {
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .card-inner.is-open {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.25rem;
+            box-shadow: 0 20px 30px -10px rgba(140, 67, 24, 0.15);
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(217, 119, 54, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(217, 119, 54, 0.6); }
+        }
+        .glow-effect {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E6A15C;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-softCream text-gray-800 font-sansBody overflow-x-hidden relative">
+
+    <!-- Canvas hiệu ứng cánh hoa / trái tim rơi -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 w-full bg-softCream/90 backdrop-blur-md z-40 border-b border-amberGold/20 shadow-sm transition-all">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 text-deepAmber font-serifHeader font-bold text-xl md:text-2xl">
+                <i class="fa-solid fa-heart text-warmOrange animate-pulse"></i>
+                <span>Tri Ân 20/11</span>
+            </a>
+            <nav class="hidden md:flex gap-8 font-medium text-gray-700">
+                <a href="#hero" class="hover:text-warmOrange transition">Trang Chủ</a>
+                <a href="#khoanhkhac" class="hover:text-warmOrange transition">Kỷ Niệm</a>
+                <a href="#thiep" class="hover:text-warmOrange transition">Thiệp Chúc Mừng</a>
+                <a href="#tho" class="hover:text-warmOrange transition">Thơ Tri Ân</a>
+            </nav>
+            <a href="#thiep" class="bg-gradient-to-r from-amberGold to-warmOrange text-white px-4 py-2 rounded-full font-medium shadow-md hover:opacity-95 transition text-sm">
+                Mở Thiệp Ngay
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen pt-28 pb-16 flex items-center justify-center relative overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-80 h-80 bg-amberGold/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 -right-20 w-96 h-96 bg-warmOrange/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center z-20">
+            <div class="inline-block px-4 py-1.5 bg-amberGold/15 text-deepAmber font-semibold text-sm rounded-full mb-6 border border-amberGold/30">
+                Chào Mừng Ngày Nhà Giáo Việt Nam 20/11
+            </div>
+            <h1 class="font-serifHeader text-3xl sm:text-5xl md:text-6xl font-bold text-deepAmber leading-tight mb-6">
+                Người Lái Đò Thầm Lặng <br/>
+                <span class="font-handwriting text-warmOrange text-4xl sm:text-6xl md:text-7xl block mt-2 font-normal">Ươm Mầm Tri Thức</span>
+            </h1>
+            <p class="text-gray-600 text-sm sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                "Dưới ánh mặt trời, không có nghề nào cao quý hơn nghề dạy học." Xin kính gửi đến quý thầy cô những lời tri ân chân thành và sâu sắc nhất từ tập thể học trò.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#khoanhkhac" class="w-full sm:w-auto px-8 py-3.5 bg-warmOrange hover:bg-deepAmber text-white font-semibold rounded-full shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-images"></i> Xem Kỷ Niệm & Thầy Cô
+                </a>
+                <a href="#thiep" class="w-full sm:w-auto px-8 py-3.5 bg-white border border-amberGold/50 text-deepAmber hover:bg-amberGold/10 font-semibold rounded-full transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-envelope-open-text"></i> Mở Thiệp Chúc Mừng
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Khoảnh Khắc Kỷ Niệm -->
+    <section id="khoanhkhac" class="py-16 max-w-6xl mx-auto px-4 relative z-20">
+        <div class="text-center mb-10">
+            <span class="text-warmOrange font-semibold tracking-wider uppercase text-sm">Khoảnh Khắc Đẹp</span>
+            <h2 class="font-serifHeader text-2xl sm:text-4xl font-bold text-deepAmber mt-1">Kỷ Niệm Bên Thầy & Tập Thể Lớp</h2>
+            <p class="text-gray-600 text-sm sm:text-base mt-2">Những ký ức theo chúng em suốt chặng đường thanh xuân</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <!-- Ảnh Thầy Giáo -->
+            <div class="bg-cardBg p-3 sm:p-4 rounded-2xl border border-amberGold/30 shadow-md">
+                <div class="overflow-hidden rounded-xl relative h-64 sm:h-80">
+                    <img src="<a href="https://ibb.co/21rVcTxJ"><img src="https://i.ibb.co/S4gYVzbS/FB-IMG-1794115279577.jpg" alt="FB-IMG-1794115279577" border="0"></a>" alt="Thầy giáo" class="w-full h-full object-cover hover:scale-105 transition duration-500 cursor-pointer" onclick="openModal(this.src)">
+                </div>
+                <div class="mt-3 text-center">
+                    <h3 class="font-serifHeader text-lg sm:text-xl font-bold text-deepAmber">Người Thầy Kính Mến</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Vững bước cùng học trò qua từng mùa phượng vĩ</p>
+                </div>
+            </div>
+
+            <!-- Ảnh Tập Thể Lớp -->
+            <div class="bg-cardBg p-3 sm:p-4 rounded-2xl border border-amberGold/30 shadow-md">
+                <div class="overflow-hidden rounded-xl relative h-64 sm:h-80">
+                    <img src="<a href="https://ibb.co/JjZdZVwz"><img src="https://i.ibb.co/pjqPqcB3/IMG-20260926-124617.jpg" alt="IMG-20260926-124617" border="0"></a>" alt="Tập thể lớp" class="w-full h-full object-cover hover:scale-105 transition duration-500 cursor-pointer" onclick="openModal(this.src)">
+                </div>
+                <div class="mt-3 text-center">
+                    <h3 class="font-serifHeader text-lg sm:text-xl font-bold text-deepAmber">Tập Thể Lớp Yêu Thương</h3>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-1">Mỗi kỷ niệm bên thầy cô và bạn bè là một khoảnh khắc vô giá</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Card Section -->
+    <section id="thiep" class="py-16 bg-gradient-to-b from-softCream via-amberGold/5 to-softCream relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="font-serifHeader text-2xl sm:text-4xl font-bold text-deepAmber mb-2">Thiệp Tri Ân 3D</h2>
+                <p class="text-gray-600 text-sm sm:text-base">Nhấn vào thiệp dưới đây để mở ra lời chúc ý nghĩa gửi tới thầy cô</p>
+            </div>
+
+            <!-- Card Container -->
+            <div class="card-container w-full max-w-md sm:max-w-xl h-[420px] sm:h-[480px] mx-auto">
+                <div id="greeting-card" class="card-inner" onclick="toggleCard()">
+                    <!-- Front of the Card -->
+                    <div class="card-front bg-cardBg border-2 border-amberGold/30 p-6 sm:p-8 flex flex-col justify-between items-center text-center glow-effect">
+                        <div class="w-full flex justify-between items-center text-amberGold text-xl">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span class="font-serifHeader italic text-sm text-gray-500">20.11</span>
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        
+                        <div class="my-auto py-2">
+                            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-tr from-amberGold to-warmOrange rounded-full mx-auto flex items-center justify-center text-white text-2xl sm:text-3xl shadow-md mb-3">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <h3 class="font-handwriting text-3xl sm:text-4xl text-warmOrange font-bold mb-1">Tri Ân Thầy Cô</h3>
+                            <p class="text-deepAmber font-semibold text-sm sm:text-base">Kính Chúc Mừng Ngày Nhà Giáo Việt Nam</p>
+                        </div>
+
+                        <div class="bg-amberGold/10 px-5 py-2 rounded-full text-warmOrange font-medium text-xs sm:text-sm flex items-center gap-2">
+                            <span>Chạm nhẹ để mở thiệp</span>
+                            <i class="fa-solid fa-hand-pointer animate-bounce"></i>
+                        </div>
+                    </div>
+
+                    <!-- Back of the Card (Inside Content) -->
+                    <div class="card-back bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-warmOrange/30 p-5 sm:p-6 flex flex-col justify-between">
+                        <div class="text-right">
+                            <button onclick="event.stopPropagation(); toggleCard();" class="text-gray-400 hover:text-warmOrange text-sm">
+                                <i class="fa-solid fa-xmark text-lg"></i> Đóng lại
+                            </button>
+                        </div>
+                        <div class="my-auto text-center space-y-2 sm:space-y-3">
+                            <i class="fa-solid fa-quote-left text-amberGold text-2xl"></i>
+                            <p class="font-handwriting text-lg sm:text-2xl text-deepAmber leading-relaxed px-2">
+                                "Cảm ơn Thầy Cô đã luôn tận tụy, bao dung và chắp cánh cho những ước mơ của chúng em bay xa."
+                            </p>
+                            <div class="text-gray-700 text-xs sm:text-sm leading-relaxed px-2">
+                                Kính chúc Thầy Cô luôn tràn đầy sức khỏe, hạnh phúc và luôn giữ vững ngọn lửa nhiệt huyết với sự nghiệp trồng người cao quý!
+                            </div>
+                        </div>
+                        <div class="text-center font-handwriting text-warmOrange text-lg sm:text-xl font-bold">
+                            Tập thể học trò kính tặng ❤️
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Poems Section -->
+    <section id="tho" class="py-16 max-w-5xl mx-auto px-4">
+        <div class="text-center mb-10">
+            <span class="text-warmOrange font-semibold tracking-wider uppercase text-sm">Góc Sâu Lắng</span>
+            <h2 class="font-serifHeader text-2xl sm:text-4xl font-bold text-deepAmber mt-1">Những Vần Thơ Tri Ân</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-cardBg border border-amberGold/20 rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-amberGold"></div>
+                <h3 class="font-serifHeader text-xl sm:text-2xl font-bold text-deepAmber mb-3">Người Lái Đò</h3>
+                <div class="font-handwriting text-lg sm:text-xl text-gray-700 leading-loose space-y-1">
+                    <p>Tháng năm dầu dãi mưa tần,</p>
+                    <p>Bâng khuâng nhớ lại dấu chân thầy về.</p>
+                    <p>Con đò trí tuệ nặng thề,</p>
+                    <p>Đưa bao thế hệ cập bờ tương lai.</p>
+                </div>
+            </div>
+
+            <div class="bg-cardBg border border-amberGold/20 rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-warmOrange"></div>
+                <h3 class="font-serifHeader text-xl sm:text-2xl font-bold text-deepAmber mb-3">Lời Cô Dạy</h3>
+                <div class="font-handwriting text-lg sm:text-xl text-gray-700 leading-loose space-y-1">
+                    <p>Bụi phấn rơi rơi bạc tóc thầy,</p>
+                    <p>Đọc bài cô giảng ngỡ như bay.</p>
+                    <p>Trăm năm ghi nhớ công ơn ấy,</p>
+                    <p>Nguyện sống tròn vai đáp nghĩa đầy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Phóng To Ảnh -->
+    <div id="imageModal" class="fixed inset-0 bg-black/85 z-50 hidden items-center justify-center p-4" onclick="closeModal()">
+        <div class="relative max-w-4xl w-full">
+            <button class="absolute -top-10 right-0 text-white text-3xl font-bold hover:text-warmOrange">×</button>
+            <img id="modalImg" src="" alt="Zoomed Image" class="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-deepAmber text-amber-100 py-8 text-center border-t border-warmOrange/30">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="font-handwriting text-2xl sm:text-3xl text-amberGold font-bold mb-2">Tri Ân Thầy Cô</div>
+            <p class="text-xs sm:text-sm opacity-80 mb-3">Kính chúc Quý Thầy Cô một ngày 20/11 thật trọn vẹn và ý nghĩa!</p>
+            <div class="text-[11px] sm:text-xs opacity-60">
+                © 20/11 - Tấm lòng thành kính gửi trọn tới những Thầy Cô Việt Nam.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleCard() {
+            const card = document.getElementById('greeting-card');
+            card.classList.toggle('is-open');
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const particleCount = 20;
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * -height;
+                this.size = Math.random() * 8 + 5;
+                this.speedY = Math.random() * 0.8 + 0.4;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.rotation = Math.random() * 360;
+                this.rotSpeed = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.color = Math.random() > 0.4 ? '#E6A15C' : '#D97736';
+                this.type = Math.random() > 0.5 ? 'petal' : 'heart';
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) + this.speedX;
+                this.rotation += this.rotSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+
+                if (this.type === 'petal') {
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.quadraticCurveTo(this.size / 2, -this.size, this.size, 0);
+                    ctx.quadraticCurveTo(this.size / 2, this.size, 0, 0);
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    const topCurveHeight = this.size * 0.3;
+                    ctx.moveTo(0, topCurveHeight);
+                    ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                    ctx.bezierCurveTo(0, (this.size + topCurveHeight) / 2, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.onload = function() {
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
